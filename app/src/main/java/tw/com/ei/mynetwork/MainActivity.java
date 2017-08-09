@@ -12,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void Button1(View v){
-
     }
     public void Button2(View v){
 
