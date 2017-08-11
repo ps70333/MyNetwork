@@ -204,6 +204,26 @@ public class MainActivity extends AppCompatActivity {
             Log.i("simon", e.toString());
         }
     }
+    public void Button5(View view){
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL("http://10.0.1.1/BRAD01.PHP?cname=hello&tel=778899&birthday=2017-08-11");
+                    HttpURLConnection conn=(HttpURLConnection)url.openConnection();
+                    conn.connect();
+                    //conn.getInputStream();//一去一回才會送料
+                    BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String aa=br.readLine();
+                    Log.i("simon","aa="+aa);
+                }catch (Exception e ){
+
+                }
+
+            }
+        }.start();
+    }
+
     private void parseJSONString(String json){
         try {
             JSONArray jsonArray=new JSONArray(json);
