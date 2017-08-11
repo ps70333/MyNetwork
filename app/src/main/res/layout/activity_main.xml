@@ -26,11 +26,22 @@
         android:layout_height="wrap_content"
         android:onClick="Button4"
         android:text="Button4"/>
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <EditText
+        android:id="@+id/pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textWebPassword"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="Button5"
         android:text="Button5"/>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

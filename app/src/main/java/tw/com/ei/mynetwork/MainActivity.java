@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ import java.net.URLConnection;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView img;
+    private EditText pwd,username;
     private Bitmap bmp;
     private UIHander hander;
     private boolean isPermissionOK;
@@ -44,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        username=(EditText)findViewById(R.id.username);
+        pwd=(EditText)findViewById(R.id.pwd);
         hander = new UIHander();
         img = (ImageView)findViewById(R.id.img);
         if (ContextCompat.checkSelfPermission(this,
@@ -209,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://10.0.1.1/BRAD01.PHP?cname=hello&tel=778899&birthday=2017-08-11");
+                    URL url = new URL("http://www.brad.tw/cloudfitness/login.php?account="+username+"&passwd="+pwd+"");
                     HttpURLConnection conn=(HttpURLConnection)url.openConnection();
                     conn.connect();
                     //conn.getInputStream();//一去一回才會送料
@@ -217,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                     String aa=br.readLine();
                     Log.i("simon","aa="+aa);
                 }catch (Exception e ){
-
+                    Log.i("simon",e.toString());
                 }
 
             }
