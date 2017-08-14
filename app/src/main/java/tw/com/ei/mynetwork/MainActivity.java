@@ -27,11 +27,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -148,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-            savePDF = new File(sdroot, "myweb.pdf");
+            savePDF = new File(sdroot, "test01.pdf");
             FileOutputStream fout = new FileOutputStream(savePDF);
 
             URL url = new URL(urlString);
@@ -252,5 +254,42 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    public void Button6(View view){
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    MultipartUtility mu=new MultipartUtility("http://10.0.1.1/brad02.php", "UTF-8");
+                    mu.addFormField("data1", "1111");
+                    mu.addFormField("data2", "2222");
+                    List<String> ret = mu.finish();
+                    for (String line : ret){
+                        Log.i("simon", line);
+                    }
+                } catch (IOException e) {
+                    Log.i("simon", e.toString());
+                }
+
+            }
+        }.start();
+    }
+    public void Button7(View view){
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    MultipartUtility mu=new MultipartUtility("http://10.0.1.1/brad04.php", "UTF-8");
+                    mu.addFilePart("test01.pdf",savePDF);
+                    List<String> ret = mu.finish();
+                    for (String line : ret){
+                        Log.i("simon", line);
+                    }
+                } catch (IOException e) {
+                    Log.i("simon", e.toString());
+                }
+
+            }
+        }.start();
     }
 }
